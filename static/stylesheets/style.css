@@ -1,0 +1,83 @@
+body
+{
+    margin:0px;
+    padding:0px;
+}
+
+/*.main
+{
+    overflow-y: scroll; 
+    overflow-x: hidden;
+    height:100%;
+    z-index: 2; 
+}
+
+.ThreeJS
+{
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+}*/
+
+p {
+    margin:10px;
+    top:0px;
+  font-size: 72px;
+  color: #27ae60;
+  border-radius: 10px;
+  /* put in a border*/
+}
+
+.btn {
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  background: #27ae60;
+  padding: 5px 60px 5px 60px;
+  border: solid #291b23 1px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #2980b9;
+  text-decoration: none;
+}
+
+.paypal {
+    width:360px;
+}
+
+.btn2 {
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  background: #e74c3c;
+  padding: 5px 60px 5px 60px;
+  border: solid #291b23 1px;
+  text-decoration: none;
+}
+
+.btn2:hover {
+    background: #9b59b6;
+    text-decoration: none;
+}
+
+.dingus {
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+}
+
+.dingus :focus,
+.dingus .focus {
+    border-bottom: solid 2px #969696;
+}

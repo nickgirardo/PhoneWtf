@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <style>body { font-family: Ubuntu, sans-serif; }</style>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+
+    <title>Phone WTF</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">
+    <script src="/static/js/jquery-1.11.3.min.js"> </script>
+    <script type="text/javascript" src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"> </script>
+
+	<script>
+
+	Twilio.Device.setup('{{ twilio_token }}');
+
+	Twilio.Device.ready(function(device) {
+	      //The device is now ready
+	      console.log("Twilio.Device is now ready for connections");
+	});
+
+	Twilio.Device.offline(function(){
+	    console.log("broke");
+	});
+
+	Twilio.Device.disconnect(function (conn) {
+	   console.log("Call ended");
+	});
+
+	function call() {
+	    $(document).ready(function(){
+		var p1 = $("#p1").val();
+		var p2 = $("#p2").val(); 
+		var p3 = $("#p3").val();
+		var p4 = $("#p4").val();
+		var p5 = $("#p5").val();
+		var p6 = $("#p6").val();
+        var twilio_obj = {player1: p1, player2: p2, player3: p3, player4: p4, player5: p5, player6: p6};        
+		Twilio.Device.connect(twilio_obj).mute(true);
+	    });
+	}
+
+	function hangup(){
+	   Twilio.Device.disconnectAll(); 
+	}
+
+	</script>
+  </head>
+
+  <body>
+    <center>
+    <p>PhoneWTF</p>
+
+    <br>
+    <form action="action_page.php">
+    <input type="text" id="p1" class="dingus" name="phonenum1" placeholder="Enter Phone Number 1">
+    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+    <input type="text" id="p2" class="dingus" name="phonenum2" placeholder="Enter Phone Number 2">
+    <br><br>
+    <br>
+    </form>
+
+    <button class="btn" type="button" onclick="call()">PhoneWTF</button>
+    <br>
+    <br>
+    <button class="btn2" type="button" onclick="hangup()">Hang Up</button>
+    <br>
+    </center>
+
+    <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+
+	<script>
+	// We generated a client token for you so you can test out this code
+	// immediately. In a production-ready integration, you will need to
+	// generate a client token on your server (see section below).
+	var clientToken = "{{ token }}";
+
+	braintree.setup(clientToken, "dropin", {
+	  container: "payment-form"
+	});
+	</script>
+<script>
+$(document).ready(function(){
+        $("#donate").click(function(){$("#ppal").toggle('fast');});
+        });
+</script>
+
+
+ </body>
+
+</html>
