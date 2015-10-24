@@ -13,3 +13,5 @@ Add a snazzy "Fork me on GitHub" ribbon
 Complete/ fix BrainTree implementation
 
 Allow for recording of calls (maybe)
+
+Add requirements.txt to repo
