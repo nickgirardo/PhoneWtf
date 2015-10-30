@@ -1,2 +1,2 @@
 # PhoneWtf
-Prank your friends and family with mysterious phone calls
+Prank your friends and family with mysterious phone calls.
