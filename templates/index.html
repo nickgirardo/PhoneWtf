@@ -139,11 +139,13 @@ $(document).ready(function(){
 		$('#call-button').click(function(){
 			$('#call-button').hide();
 			$('#hangup-button').show();
+			call();
 		});
 
 		$('#hangup-button').click(function(){
 			$('#call-button').show();
 			$('#hangup-button').hide();
+			hangup();
 		});
 </script>
 

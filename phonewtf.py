@@ -32,7 +32,7 @@ def index():
     twilio_token = capability.generate()
     return render_template('index.html', token=braintree_token, twilio_token=twilio_token)
 
-@application.route('/voice', methods=['POST'])
+@application.route('/voice', methods=['GET', 'POST'])
 def call():
     #TODO Replace with better uuid
     global room
