@@ -24,7 +24,7 @@ room = 0
 out_number = "+16092514587"
 
 @application.route('/')
-def hello_world():
+def index():
     braintree_token = client_token()
      
     capability = TwilioCapability(config.twilio['account_sid'], config.twilio['auth_token'])
