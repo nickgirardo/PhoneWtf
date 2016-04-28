@@ -1,0 +1,96 @@
+extends layout
+
+block content
+  center
+    p PhoneWTF
+
+    br
+    form
+      input#p1.dingus(type="text", name="phonenum1", placeholder="Enter Phone Number 1")
+      | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      input#p2.dingus(type="text", name="phonenum2", placeholder="Enter Phone Number 2")
+
+      span#down-arrow
+        img(src="/static/img/down.png", height="20", width="20", style="position: absolute")
+      span#up-arrow
+        img(src="/static/img/up.png", height="20", width="20", style="position: absolute") 
+
+      br
+      div#hidden-numbers(style="display:none")
+        input#p3.dingus(type="text", name="phonenum3", placeholder="Enter Phone Number 3")
+        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input#p4.dingus(type="text", name="phonenum4", placeholder="Enter Phone Number 4")
+        br
+        input#p5.dingus(type="text", name="phonenum5", placeholder="Enter Phone Number 5")
+        | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input#p6.dingus(type="text", name="phonenum6", placeholder="Enter Phone Number 6")
+
+    br
+    br
+    br
+
+    button#call-button(type='button') PhoneWTF
+    button#hangup-button(type='button', style='display:none') End Call
+
+
+  script.
+
+    Twilio.Device.setup('#{twilio_token}');
+
+    Twilio.Device.ready(function(device) {
+          //The device is now ready
+          console.log("Twilio.Device is now ready for connections");
+    });
+
+    Twilio.Device.offline(function(){
+        console.log("broke");
+    });
+
+    Twilio.Device.disconnect(function (conn) {
+       console.log("Call ended");
+    });
+
+    function call() {
+        $(document).ready(function(){
+      var p1 = $("#p1").val();
+      var p2 = $("#p2").val(); 
+      var p3 = $("#p3").val();
+      var p4 = $("#p4").val();
+      var p5 = $("#p5").val();
+      var p6 = $("#p6").val();
+          var twilio_obj = {player1: p1, player2: p2, player3: p3, player4: p4, player5: p5, player6: p6};        
+      Twilio.Device.connect(twilio_obj).mute(true);
+        });
+    }
+
+    function hangup(){
+       Twilio.Device.disconnectAll(); 
+    }
+
+      
+    var upArrow = $('#up-arrow').clone();
+    var downArrow = $('#down-arrow').clone();
+
+    $('#down-arrow').click(function(){
+      $('#down-arrow').hide();
+      $('#up-arrow').show();
+        $('#hidden-numbers').toggle('fast');
+    });
+
+    $('#up-arrow').click(function(){
+      $('#down-arrow').show();
+      $('#up-arrow').hide();
+        $('#hidden-numbers').toggle('fast');
+    });
+
+    $('#call-button').click(function(){
+      $('#call-button').hide();
+      $('#hangup-button').show();
+      call();
+    });
+
+    $('#hangup-button').click(function(){
+      $('#call-button').show();
+      $('#hangup-button').hide();
+      hangup();
+    });

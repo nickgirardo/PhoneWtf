@@ -1,0 +1,32 @@
+!!! 5
+html(lang='en')
+  head
+    link(rel="shortcut icon" href="/img/favicon.ico")
+    meta(charset="utf-8")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin")
+    link(rel="stylesheet" href="/static/stylesheets/style.css")
+
+    title=title
+
+    script(src="/static/js/jquery-1.11.3.min.js")
+    script(src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js")
+
+  body
+
+    a(href="https://github.com/nickgirardo/PhoneWtf")
+      img.ribbon(src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67", alt="Fork me on GitHub", data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png")
+
+    div.nav
+      ul
+        li
+          a(href='/', class=('active' if title=="Phone WTF")) Home
+        li
+          a(href='/about', class=('active' if title=="About")) About
+        li
+          a(href='/support', class=('active' if title=="Support")) Support
+
+    br
+    br
+    br
+
+    block content

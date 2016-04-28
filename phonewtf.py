@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, send_from_directory, send_file
 import braintree
+import pyjade
 from twilio.util import TwilioCapability
 from twilio import twiml
 from twilio.rest import TwilioRestClient
@@ -7,6 +8,7 @@ import config
 
 
 application = Flask(__name__)
+application.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 braintree.Configuration.configure(
 	braintree.Environment.Sandbox,
@@ -30,7 +32,7 @@ def index():
     capability = TwilioCapability(config.twilio['account_sid'], config.twilio['auth_token'])
     capability.allow_client_outgoing(config.twilio['app_sid'])
     twilio_token = capability.generate()
-    return render_template('index.html', token=braintree_token, twilio_token=twilio_token)
+    return render_template('index.jade', title="Phone WTF", twilio_token=twilio_token)
 
 @application.route('/voice', methods=['GET', 'POST'])
 def call():
