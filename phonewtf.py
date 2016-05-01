@@ -34,6 +34,14 @@ def index():
     twilio_token = capability.generate()
     return render_template('index.jade', title="Phone WTF", twilio_token=twilio_token)
 
+@application.route('/about')
+def about():
+    return render_template('about.jade', title="About")
+
+@application.route('/support')
+def support():
+    return render_template('support.jade', title="Support")
+
 @application.route('/voice', methods=['GET', 'POST'])
 def call():
     #TODO Replace with better uuid
